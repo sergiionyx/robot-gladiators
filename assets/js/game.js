@@ -4,8 +4,13 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
-var enemyHealth = 50;
+var enemyHealth = randomNumber();
 var enemyAttack = 12;
+
+var randomNumber = function(min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  return value;  
+}
 
 // fight function (now with parameter for enemy's name)
 var fight = function(enemyName) {
@@ -29,7 +34,8 @@ var fight = function(enemyName) {
     }
 
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = enemyHealth - playerAttack;
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -48,7 +54,8 @@ var fight = function(enemyName) {
     }
 
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = playerHealth - enemyAttack;
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -67,7 +74,7 @@ var fight = function(enemyName) {
 // function to start a new game
 var startGame = function() {
   // reset players stats
-  playerHealth =100;
+  playerHealth = Math.floor(Math.random() * 21) + 40;
   playerAttack = 10;
   playerMoney = 10;
 
@@ -82,7 +89,7 @@ var startGame = function() {
       var pickedEnemyName = enemyNames[i];
   
       // reset enemyHealth before starting new fight
-      enemyHealth = 50;
+      enemyHealth = randomNumber(40,60);
   
       // use debugger to pause script from running and check what's going on at that moment in the code
       // debugger;
@@ -95,7 +102,6 @@ var startGame = function() {
         // ask if player wants to use the store before next round
         var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
         // if yes, take them to the store() function
-        debugger;
         if (storeConfirm) {
           shop();
         }        
@@ -163,7 +169,7 @@ var shop = function() {
     
         // increase health and decrease money
         playerHealth = playerHealth + 20;
-        playerMoney = playerMoney - 7;
+        playerMoney = Math.max(0, playerMoney - 10);
       }
       else {
         window.alert("You don't have enough money!");
@@ -177,7 +183,7 @@ var shop = function() {
     
        // increase attack and decrease money
         playerAttack = playerAttack + 6;
-        playerMoney = playerMoney - 7;
+        playerMoney = Math.max(0, playerMoney - 7);
       }
       else {
         window.alert("You don't have enough money!");
