@@ -132,22 +132,24 @@ var endGame = function() {
   else {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");
   }
+
+  // ask player if they'd like to play again
+  var playAgainConfirm = window.confirm("Would you like to play again?");
+
+  if (playAgainConfirm) {
+    // restart the game
+    startGame();
+  } 
+  else {
+    window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+  }
+
+
 }
 
-/* WHEN THE PROGRAM START COMPILE? WHEN WE CALL THE FIRST FUNCTION?
-    var is asking for "action". if the "action" is not described, so you will have the error
-    function is just describe the action and name of the function is like a "shortcut for file" and can be located anywhere
-                                // ask player if they'd like to play again
-                                var playAgainConfirm = window.confirm("Would you like to play again?");
-
-                                if (playAgainConfirm) {
-                                  // restart the game
-                                  startGame();
-                                } 
-                                else {
-                                  window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-                                }
-*/
+function shop() {
+  
+}
 var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
